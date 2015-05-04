@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haodaibao.fund.trade.dao.CustomerSignMapper" >
+  <resultMap id="BaseResultMap" type="com.haodaibao.fund.trade.domain.CustomerSign" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="CUST_ACC_NO" property="custAccNo" jdbcType="VARCHAR" />
+    <result column="FD_MHT_NO" property="fdMhtNo" jdbcType="VARCHAR" />
+    <result column="SIGN_NO" property="signNo" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="MOBILE_NO" property="mobileNo" jdbcType="VARCHAR" />
+    <result column="CERT_TYPE" property="certType" jdbcType="VARCHAR" />
+    <result column="CERT_NO" property="certNo" jdbcType="VARCHAR" />
+    <result column="BANK_CODE" property="bankCode" jdbcType="VARCHAR" />
+    <result column="BANK_CARD_NO" property="bankCardNo" jdbcType="VARCHAR" />
+    <result column="BANK_CNAPS" property="bankCnaps" jdbcType="VARCHAR" />
+    <result column="SIGN_TIME" property="signTime" jdbcType="TIMESTAMP" />
+    <result column="SIGN_STATUS" property="signStatus" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="RETURN_URL" property="returnUrl" jdbcType="VARCHAR" />
+    <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CUST_ACC_NO, FD_MHT_NO, SIGN_NO, CUST_NAME, MOBILE_NO, CERT_TYPE, CERT_NO, BANK_CODE, 
+    BANK_CARD_NO, BANK_CNAPS, SIGN_TIME, SIGN_STATUS, MEMO, RETURN_URL, NOTIFY_URL, CREATED_TIME, 
+    MODIFIED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fb_customer_sign
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fb_customer_sign
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.haodaibao.fund.trade.domain.CustomerSign" >
+    insert into fb_customer_sign (ID, CUST_ACC_NO, FD_MHT_NO, 
+      SIGN_NO, CUST_NAME, MOBILE_NO, 
+      CERT_TYPE, CERT_NO, BANK_CODE, 
+      BANK_CARD_NO, BANK_CNAPS, SIGN_TIME, 
+      SIGN_STATUS, MEMO, RETURN_URL, 
+      NOTIFY_URL, CREATED_TIME, MODIFIED_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{custAccNo,jdbcType=VARCHAR}, #{fdMhtNo,jdbcType=VARCHAR}, 
+      #{signNo,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{mobileNo,jdbcType=VARCHAR}, 
+      #{certType,jdbcType=VARCHAR}, #{certNo,jdbcType=VARCHAR}, #{bankCode,jdbcType=VARCHAR}, 
+      #{bankCardNo,jdbcType=VARCHAR}, #{bankCnaps,jdbcType=VARCHAR}, #{signTime,jdbcType=TIMESTAMP}, 
+      #{signStatus,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{returnUrl,jdbcType=VARCHAR}, 
+      #{notifyUrl,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.haodaibao.fund.trade.domain.CustomerSign" >
+    insert into fb_customer_sign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="custAccNo != null" >
+        CUST_ACC_NO,
+      </if>
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO,
+      </if>
+      <if test="signNo != null" >
+        SIGN_NO,
+      </if>
+      <if test="custName != null" >
+        CUST_NAME,
+      </if>
+      <if test="mobileNo != null" >
+        MOBILE_NO,
+      </if>
+      <if test="certType != null" >
+        CERT_TYPE,
+      </if>
+      <if test="certNo != null" >
+        CERT_NO,
+      </if>
+      <if test="bankCode != null" >
+        BANK_CODE,
+      </if>
+      <if test="bankCardNo != null" >
+        BANK_CARD_NO,
+      </if>
+      <if test="bankCnaps != null" >
+        BANK_CNAPS,
+      </if>
+      <if test="signTime != null" >
+        SIGN_TIME,
+      </if>
+      <if test="signStatus != null" >
+        SIGN_STATUS,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="returnUrl != null" >
+        RETURN_URL,
+      </if>
+      <if test="notifyUrl != null" >
+        NOTIFY_URL,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="custAccNo != null" >
+        #{custAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdMhtNo != null" >
+        #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="signNo != null" >
+        #{signNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null" >
+        #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCnaps != null" >
+        #{bankCnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null" >
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signStatus != null" >
+        #{signStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null" >
+        #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haodaibao.fund.trade.domain.CustomerSign" >
+    update fb_customer_sign
+    <set >
+      <if test="custAccNo != null" >
+        CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="signNo != null" >
+        SIGN_NO = #{signNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNo != null" >
+        MOBILE_NO = #{mobileNo,jdbcType=VARCHAR},
+      </if>
+      <if test="certType != null" >
+        CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      </if>
+      <if test="certNo != null" >
+        CERT_NO = #{certNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCode != null" >
+        BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNo != null" >
+        BANK_CARD_NO = #{bankCardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCnaps != null" >
+        BANK_CNAPS = #{bankCnaps,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null" >
+        SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signStatus != null" >
+        SIGN_STATUS = #{signStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null" >
+        RETURN_URL = #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haodaibao.fund.trade.domain.CustomerSign" >
+    update fb_customer_sign
+    set CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      SIGN_NO = #{signNo,jdbcType=VARCHAR},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      MOBILE_NO = #{mobileNo,jdbcType=VARCHAR},
+      CERT_TYPE = #{certType,jdbcType=VARCHAR},
+      CERT_NO = #{certNo,jdbcType=VARCHAR},
+      BANK_CODE = #{bankCode,jdbcType=VARCHAR},
+      BANK_CARD_NO = #{bankCardNo,jdbcType=VARCHAR},
+      BANK_CNAPS = #{bankCnaps,jdbcType=VARCHAR},
+      SIGN_TIME = #{signTime,jdbcType=TIMESTAMP},
+      SIGN_STATUS = #{signStatus,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      RETURN_URL = #{returnUrl,jdbcType=VARCHAR},
+      NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

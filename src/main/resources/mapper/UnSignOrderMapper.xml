@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haodaibao.fund.trade.dao.UnSignOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.haodaibao.fund.trade.domain.UnSignOrder" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="FD_MHT_NO" property="fdMhtNo" jdbcType="VARCHAR" />
+    <result column="CUST_ACC_NO" property="custAccNo" jdbcType="VARCHAR" />
+    <result column="CUST_SIGN_NO" property="custSignNo" jdbcType="VARCHAR" />
+    <result column="UNSIGN_STATUS" property="unsignStatus" jdbcType="VARCHAR" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="ERROR_MSG" property="errorMsg" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, FD_MHT_NO, CUST_ACC_NO, CUST_SIGN_NO, UNSIGN_STATUS, ORDER_TIME, ERROR_MSG, 
+    CREATED_TIME, MODIFIED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fb_unsign_order
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fb_unsign_order
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.haodaibao.fund.trade.domain.UnSignOrder" >
+    insert into fb_unsign_order (ID, ORDER_NO, FD_MHT_NO, 
+      CUST_ACC_NO, CUST_SIGN_NO, UNSIGN_STATUS, 
+      ORDER_TIME, ERROR_MSG, CREATED_TIME, 
+      MODIFIED_TIME)
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{fdMhtNo,jdbcType=VARCHAR}, 
+      #{custAccNo,jdbcType=VARCHAR}, #{custSignNo,jdbcType=VARCHAR}, #{unsignStatus,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{errorMsg,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haodaibao.fund.trade.domain.UnSignOrder" >
+    insert into fb_unsign_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO,
+      </if>
+      <if test="custAccNo != null" >
+        CUST_ACC_NO,
+      </if>
+      <if test="custSignNo != null" >
+        CUST_SIGN_NO,
+      </if>
+      <if test="unsignStatus != null" >
+        UNSIGN_STATUS,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="errorMsg != null" >
+        ERROR_MSG,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdMhtNo != null" >
+        #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custAccNo != null" >
+        #{custAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custSignNo != null" >
+        #{custSignNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unsignStatus != null" >
+        #{unsignStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haodaibao.fund.trade.domain.UnSignOrder" >
+    update fb_unsign_order
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custAccNo != null" >
+        CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      </if>
+      <if test="custSignNo != null" >
+        CUST_SIGN_NO = #{custSignNo,jdbcType=VARCHAR},
+      </if>
+      <if test="unsignStatus != null" >
+        UNSIGN_STATUS = #{unsignStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorMsg != null" >
+        ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haodaibao.fund.trade.domain.UnSignOrder" >
+    update fb_unsign_order
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      CUST_ACC_NO = #{custAccNo,jdbcType=VARCHAR},
+      CUST_SIGN_NO = #{custSignNo,jdbcType=VARCHAR},
+      UNSIGN_STATUS = #{unsignStatus,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

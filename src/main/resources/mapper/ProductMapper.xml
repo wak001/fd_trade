@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haodaibao.fund.trade.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.haodaibao.fund.trade.domain.Product" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="FD_MHT_NO" property="fdMhtNo" jdbcType="VARCHAR" />
+    <result column="PRODUCT_CODE" property="productCode" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NAME" property="productName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_TYPE" property="productType" jdbcType="VARCHAR" />
+    <result column="SETTLE1_CYClE" property="settle1Cycle" jdbcType="INTEGER" />
+    <result column="SETTLE2_CYCLE" property="settle2Cycle" jdbcType="INTEGER" />
+    <result column="PRODUCT_STATUS" property="productStatus" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, FD_MHT_NO, PRODUCT_CODE, PRODUCT_NAME, PRODUCT_TYPE, SETTLE1_CYClE, SETTLE2_CYCLE, 
+    PRODUCT_STATUS, CREATED_TIME, MODIFIED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fb_product
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fb_product
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.haodaibao.fund.trade.domain.Product" >
+    insert into fb_product (ID, FD_MHT_NO, PRODUCT_CODE, 
+      PRODUCT_NAME, PRODUCT_TYPE, SETTLE1_CYClE, 
+      SETTLE2_CYCLE, PRODUCT_STATUS, CREATED_TIME, 
+      MODIFIED_TIME)
+    values (#{id,jdbcType=BIGINT}, #{fdMhtNo,jdbcType=VARCHAR}, #{productCode,jdbcType=VARCHAR}, 
+      #{productName,jdbcType=VARCHAR}, #{productType,jdbcType=VARCHAR}, #{settle1Cycle,jdbcType=INTEGER}, 
+      #{settle2Cycle,jdbcType=INTEGER}, #{productStatus,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haodaibao.fund.trade.domain.Product" >
+    insert into fb_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO,
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE,
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME,
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE,
+      </if>
+      <if test="settle1Cycle != null" >
+        SETTLE1_CYClE,
+      </if>
+      <if test="settle2Cycle != null" >
+        SETTLE2_CYCLE,
+      </if>
+      <if test="productStatus != null" >
+        PRODUCT_STATUS,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="fdMhtNo != null" >
+        #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="settle1Cycle != null" >
+        #{settle1Cycle,jdbcType=INTEGER},
+      </if>
+      <if test="settle2Cycle != null" >
+        #{settle2Cycle,jdbcType=INTEGER},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haodaibao.fund.trade.domain.Product" >
+    update fb_product
+    <set >
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="productCode != null" >
+        PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productName != null" >
+        PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="productType != null" >
+        PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      </if>
+      <if test="settle1Cycle != null" >
+        SETTLE1_CYClE = #{settle1Cycle,jdbcType=INTEGER},
+      </if>
+      <if test="settle2Cycle != null" >
+        SETTLE2_CYCLE = #{settle2Cycle,jdbcType=INTEGER},
+      </if>
+      <if test="productStatus != null" >
+        PRODUCT_STATUS = #{productStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haodaibao.fund.trade.domain.Product" >
+    update fb_product
+    set FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      PRODUCT_CODE = #{productCode,jdbcType=VARCHAR},
+      PRODUCT_NAME = #{productName,jdbcType=VARCHAR},
+      PRODUCT_TYPE = #{productType,jdbcType=VARCHAR},
+      SETTLE1_CYClE = #{settle1Cycle,jdbcType=INTEGER},
+      SETTLE2_CYCLE = #{settle2Cycle,jdbcType=INTEGER},
+      PRODUCT_STATUS = #{productStatus,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

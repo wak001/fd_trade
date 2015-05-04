@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haodaibao.fund.trade.dao.DictMapper" >
+  <resultMap id="BaseResultMap" type="com.haodaibao.fund.trade.domain.Dict" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="DICT_TYPE" property="dictType" jdbcType="VARCHAR" />
+    <result column="DICT_CODE" property="dictCode" jdbcType="VARCHAR" />
+    <result column="DICT_VALUE1" property="dictValue1" jdbcType="VARCHAR" />
+    <result column="DICT_VALUE2" property="dictValue2" jdbcType="VARCHAR" />
+    <result column="DICT_VALUE3" property="dictValue3" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DICT_TYPE, DICT_CODE, DICT_VALUE1, DICT_VALUE2, DICT_VALUE3, REMARK, CREATED_TIME, 
+    MODIFIED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fb_dict
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fb_dict
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.haodaibao.fund.trade.domain.Dict" >
+    insert into fb_dict (ID, DICT_TYPE, DICT_CODE, 
+      DICT_VALUE1, DICT_VALUE2, DICT_VALUE3, 
+      REMARK, CREATED_TIME, MODIFIED_TIME
+      )
+    values (#{id,jdbcType=BIGINT}, #{dictType,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, 
+      #{dictValue1,jdbcType=VARCHAR}, #{dictValue2,jdbcType=VARCHAR}, #{dictValue3,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.haodaibao.fund.trade.domain.Dict" >
+    insert into fb_dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="dictType != null" >
+        DICT_TYPE,
+      </if>
+      <if test="dictCode != null" >
+        DICT_CODE,
+      </if>
+      <if test="dictValue1 != null" >
+        DICT_VALUE1,
+      </if>
+      <if test="dictValue2 != null" >
+        DICT_VALUE2,
+      </if>
+      <if test="dictValue3 != null" >
+        DICT_VALUE3,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue1 != null" >
+        #{dictValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue2 != null" >
+        #{dictValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue3 != null" >
+        #{dictValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haodaibao.fund.trade.domain.Dict" >
+    update fb_dict
+    <set >
+      <if test="dictType != null" >
+        DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue1 != null" >
+        DICT_VALUE1 = #{dictValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue2 != null" >
+        DICT_VALUE2 = #{dictValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="dictValue3 != null" >
+        DICT_VALUE3 = #{dictValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haodaibao.fund.trade.domain.Dict" >
+    update fb_dict
+    set DICT_TYPE = #{dictType,jdbcType=VARCHAR},
+      DICT_CODE = #{dictCode,jdbcType=VARCHAR},
+      DICT_VALUE1 = #{dictValue1,jdbcType=VARCHAR},
+      DICT_VALUE2 = #{dictValue2,jdbcType=VARCHAR},
+      DICT_VALUE3 = #{dictValue3,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haodaibao.fund.trade.dao.PurchaseOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.haodaibao.fund.trade.domain.PurchaseOrder" >
+    <id column="ID" property="id" jdbcType="BIGINT" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="FD_MHT_NO" property="fdMhtNo" jdbcType="VARCHAR" />
+    <result column="OUT_TRADE_NO" property="outTradeNo" jdbcType="VARCHAR" />
+    <result column="OUT_TRADE_TIME" property="outTradeTime" jdbcType="TIMESTAMP" />
+    <result column="FUND_NAME" property="fundName" jdbcType="VARCHAR" />
+    <result column="FUND_CODE" property="fundCode" jdbcType="VARCHAR" />
+    <result column="FUND_TYPE" property="fundType" jdbcType="VARCHAR" />
+    <result column="TRADE_TYPE" property="tradeType" jdbcType="VARCHAR" />
+    <result column="SETTLE_DATE" property="settleDate" jdbcType="DATE" />
+    <result column="EXPIRE_DATE" property="expireDate" jdbcType="DATE" />
+    <result column="CUST_SIGN_NO" property="custSignNo" jdbcType="VARCHAR" />
+    <result column="TRADE_AMT" property="tradeAmt" jdbcType="INTEGER" />
+    <result column="TRADE_MEMO" property="tradeMemo" jdbcType="VARCHAR" />
+    <result column="PAY_METHOD" property="payMethod" jdbcType="VARCHAR" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="PAY_STATUS" property="payStatus" jdbcType="VARCHAR" />
+    <result column="RECON_STATUS" property="reconStatus" jdbcType="VARCHAR" />
+    <result column="SETTLE_STATUS" property="settleStatus" jdbcType="VARCHAR" />
+    <result column="ERROR_MSG" property="errorMsg" jdbcType="VARCHAR" />
+    <result column="RETURN_URL" property="returnUrl" jdbcType="VARCHAR" />
+    <result column="NOTIFY_URL" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="CREATED_TIME" property="createdTime" jdbcType="TIMESTAMP" />
+    <result column="MODIFIED_TIME" property="modifiedTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, FD_MHT_NO, OUT_TRADE_NO, OUT_TRADE_TIME, FUND_NAME, FUND_CODE, FUND_TYPE, 
+    TRADE_TYPE, SETTLE_DATE, EXPIRE_DATE, CUST_SIGN_NO, TRADE_AMT, TRADE_MEMO, PAY_METHOD, 
+    ORDER_TIME, ORDER_STATUS, PAY_STATUS, RECON_STATUS, SETTLE_STATUS, ERROR_MSG, RETURN_URL, 
+    NOTIFY_URL, CREATED_TIME, MODIFIED_TIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from fb_purchase_order
+    where ID = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from fb_purchase_order
+    where ID = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.haodaibao.fund.trade.domain.PurchaseOrder" >
+    insert into fb_purchase_order (ID, ORDER_NO, FD_MHT_NO, 
+      OUT_TRADE_NO, OUT_TRADE_TIME, FUND_NAME, 
+      FUND_CODE, FUND_TYPE, TRADE_TYPE, 
+      SETTLE_DATE, EXPIRE_DATE, CUST_SIGN_NO, 
+      TRADE_AMT, TRADE_MEMO, PAY_METHOD, 
+      ORDER_TIME, ORDER_STATUS, PAY_STATUS, 
+      RECON_STATUS, SETTLE_STATUS, ERROR_MSG, 
+      RETURN_URL, NOTIFY_URL, CREATED_TIME, 
+      MODIFIED_TIME)
+    values (#{id,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{fdMhtNo,jdbcType=VARCHAR}, 
+      #{outTradeNo,jdbcType=VARCHAR}, #{outTradeTime,jdbcType=TIMESTAMP}, #{fundName,jdbcType=VARCHAR}, 
+      #{fundCode,jdbcType=VARCHAR}, #{fundType,jdbcType=VARCHAR}, #{tradeType,jdbcType=VARCHAR}, 
+      #{settleDate,jdbcType=DATE}, #{expireDate,jdbcType=DATE}, #{custSignNo,jdbcType=VARCHAR}, 
+      #{tradeAmt,jdbcType=INTEGER}, #{tradeMemo,jdbcType=VARCHAR}, #{payMethod,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, 
+      #{reconStatus,jdbcType=VARCHAR}, #{settleStatus,jdbcType=VARCHAR}, #{errorMsg,jdbcType=VARCHAR}, 
+      #{returnUrl,jdbcType=VARCHAR}, #{notifyUrl,jdbcType=VARCHAR}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haodaibao.fund.trade.domain.PurchaseOrder" >
+    insert into fb_purchase_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO,
+      </if>
+      <if test="outTradeNo != null" >
+        OUT_TRADE_NO,
+      </if>
+      <if test="outTradeTime != null" >
+        OUT_TRADE_TIME,
+      </if>
+      <if test="fundName != null" >
+        FUND_NAME,
+      </if>
+      <if test="fundCode != null" >
+        FUND_CODE,
+      </if>
+      <if test="fundType != null" >
+        FUND_TYPE,
+      </if>
+      <if test="tradeType != null" >
+        TRADE_TYPE,
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE,
+      </if>
+      <if test="expireDate != null" >
+        EXPIRE_DATE,
+      </if>
+      <if test="custSignNo != null" >
+        CUST_SIGN_NO,
+      </if>
+      <if test="tradeAmt != null" >
+        TRADE_AMT,
+      </if>
+      <if test="tradeMemo != null" >
+        TRADE_MEMO,
+      </if>
+      <if test="payMethod != null" >
+        PAY_METHOD,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS,
+      </if>
+      <if test="payStatus != null" >
+        PAY_STATUS,
+      </if>
+      <if test="reconStatus != null" >
+        RECON_STATUS,
+      </if>
+      <if test="settleStatus != null" >
+        SETTLE_STATUS,
+      </if>
+      <if test="errorMsg != null" >
+        ERROR_MSG,
+      </if>
+      <if test="returnUrl != null" >
+        RETURN_URL,
+      </if>
+      <if test="notifyUrl != null" >
+        NOTIFY_URL,
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME,
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdMhtNo != null" >
+        #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null" >
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeTime != null" >
+        #{outTradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fundName != null" >
+        #{fundName,jdbcType=VARCHAR},
+      </if>
+      <if test="fundCode != null" >
+        #{fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fundType != null" >
+        #{fundType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        #{settleDate,jdbcType=DATE},
+      </if>
+      <if test="expireDate != null" >
+        #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="custSignNo != null" >
+        #{custSignNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAmt != null" >
+        #{tradeAmt,jdbcType=INTEGER},
+      </if>
+      <if test="tradeMemo != null" >
+        #{tradeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reconStatus != null" >
+        #{reconStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null" >
+        #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null" >
+        #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haodaibao.fund.trade.domain.PurchaseOrder" >
+    update fb_purchase_order
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="fdMhtNo != null" >
+        FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeNo != null" >
+        OUT_TRADE_NO = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outTradeTime != null" >
+        OUT_TRADE_TIME = #{outTradeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fundName != null" >
+        FUND_NAME = #{fundName,jdbcType=VARCHAR},
+      </if>
+      <if test="fundCode != null" >
+        FUND_CODE = #{fundCode,jdbcType=VARCHAR},
+      </if>
+      <if test="fundType != null" >
+        FUND_TYPE = #{fundType,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeType != null" >
+        TRADE_TYPE = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="settleDate != null" >
+        SETTLE_DATE = #{settleDate,jdbcType=DATE},
+      </if>
+      <if test="expireDate != null" >
+        EXPIRE_DATE = #{expireDate,jdbcType=DATE},
+      </if>
+      <if test="custSignNo != null" >
+        CUST_SIGN_NO = #{custSignNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeAmt != null" >
+        TRADE_AMT = #{tradeAmt,jdbcType=INTEGER},
+      </if>
+      <if test="tradeMemo != null" >
+        TRADE_MEMO = #{tradeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="payMethod != null" >
+        PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        PAY_STATUS = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="reconStatus != null" >
+        RECON_STATUS = #{reconStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="settleStatus != null" >
+        SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="errorMsg != null" >
+        ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="returnUrl != null" >
+        RETURN_URL = #{returnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="createdTime != null" >
+        CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null" >
+        MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haodaibao.fund.trade.domain.PurchaseOrder" >
+    update fb_purchase_order
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      FD_MHT_NO = #{fdMhtNo,jdbcType=VARCHAR},
+      OUT_TRADE_NO = #{outTradeNo,jdbcType=VARCHAR},
+      OUT_TRADE_TIME = #{outTradeTime,jdbcType=TIMESTAMP},
+      FUND_NAME = #{fundName,jdbcType=VARCHAR},
+      FUND_CODE = #{fundCode,jdbcType=VARCHAR},
+      FUND_TYPE = #{fundType,jdbcType=VARCHAR},
+      TRADE_TYPE = #{tradeType,jdbcType=VARCHAR},
+      SETTLE_DATE = #{settleDate,jdbcType=DATE},
+      EXPIRE_DATE = #{expireDate,jdbcType=DATE},
+      CUST_SIGN_NO = #{custSignNo,jdbcType=VARCHAR},
+      TRADE_AMT = #{tradeAmt,jdbcType=INTEGER},
+      TRADE_MEMO = #{tradeMemo,jdbcType=VARCHAR},
+      PAY_METHOD = #{payMethod,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      PAY_STATUS = #{payStatus,jdbcType=VARCHAR},
+      RECON_STATUS = #{reconStatus,jdbcType=VARCHAR},
+      SETTLE_STATUS = #{settleStatus,jdbcType=VARCHAR},
+      ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+      RETURN_URL = #{returnUrl,jdbcType=VARCHAR},
+      NOTIFY_URL = #{notifyUrl,jdbcType=VARCHAR},
+      CREATED_TIME = #{createdTime,jdbcType=TIMESTAMP},
+      MODIFIED_TIME = #{modifiedTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
